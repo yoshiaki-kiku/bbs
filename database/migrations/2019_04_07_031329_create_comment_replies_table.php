@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTopicsTable extends Migration
+class CreateCommentRepliesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateTopicsTable extends Migration
      */
     public function up()
     {
-        Schema::create('topics', function (Blueprint $table) {
+        Schema::create('comment_replies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('comment_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->string('title', 100);
             $table->text('message');
+            $table->integer('vote');
             $table->timestamps();
+
+            $table->foreign('comment_id')->references('id')->on('comments');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -29,6 +33,6 @@ class CreateTopicsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('topics');
+        Schema::dropIfExists('comment_replies');
     }
 }
