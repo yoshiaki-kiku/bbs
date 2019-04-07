@@ -16,6 +16,6 @@ class Topic extends Model
 
     public function user()
     {
-        $this->belongsTo("App\user");
+        $this->belongsTo("App\User");
     }
 }
