@@ -8,8 +8,17 @@ class Comment extends Model
 {
     protected $table = "comments";
     protected $fillable = [
-        "response_id",
         "message",
         "votes",
     ];
+
+    public function user()
+    {
+        $this->belongsTo("App\User");
+    }
+
+    public function topic()
+    {
+        $this->belongsTo("App\Topic");
+    }
 }
