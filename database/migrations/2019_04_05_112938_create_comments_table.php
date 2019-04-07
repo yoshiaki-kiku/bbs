@@ -17,6 +17,7 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('topic_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('comment_reply')->unsigned()->default(0);
             $table->text('message');
             $table->integer('vote');
             $table->timestamps();
