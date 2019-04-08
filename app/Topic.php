@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Topic extends Model
 {
@@ -11,12 +12,19 @@ class Topic extends Model
 
     public function comment()
     {
-        $this->hasMany("App\Comment");
+        return $this->hasMany("App\Comment");
     }
 
     public function user()
     {
-        $this->belongsTo("App\User");
+        return $this->belongsTo("App\User");
+    }
+
+    public function getDateAttribute()
+    {
+        $carbon = new Carbon($this->created_at);
+        $date = $carbon->isoFormat('YYYY年MM月DD日 LTS (ddd)');
+        return $date;
     }
 
     /**
@@ -25,7 +33,7 @@ class Topic extends Model
      * @param [type] $topics
      * @return void
      */
-    public static function countComment($topics)
+    public function countComment($topics)
     {
         $array = [];
         foreach ($topics as $topic) {

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Comment extends Model
 {
@@ -14,11 +15,18 @@ class Comment extends Model
 
     public function user()
     {
-        $this->belongsTo("App\User");
+        return $this->belongsTo("App\User");
     }
 
     public function topic()
     {
-        $this->belongsTo("App\Topic");
+        return $this->belongsTo("App\Topic");
+    }
+
+    public function getDateAttribute()
+    {
+        $carbon = new Carbon($this->created_at);
+        $date = $carbon->isoFormat('YYYY年MM月DD日 LTS (ddd)');
+        return $date;
     }
 }

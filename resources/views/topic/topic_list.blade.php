@@ -8,7 +8,10 @@
         <h3 class="card-header bg-dark text-white">{{ $topic->title }}</h3>
         <div class="card-body">
             <p class="card-text">{{ $topic->message }}</p>
-            <a href="#!" class="btn btn-primary">
+            <div class="row">
+                <p class="col text-right">{{ $topic->date }}</p>
+            </div>
+            <a href="{{ action('CommentController@show', $topic->id) }}" class="btn btn-primary">
                 コメントを見る
                 <span class="badge badge-pill badge-light">{{ $numberOfComments[$loop->index] }}</span>
             </a>

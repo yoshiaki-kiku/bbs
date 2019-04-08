@@ -11,4 +11,8 @@
 |
 */
 
+// トップページ
 Route::get('/', "TopicController@index");
+
+// コメントパーげ
+Route::get('comments/{id}', "CommentController@show");
