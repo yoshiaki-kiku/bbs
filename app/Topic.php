@@ -18,4 +18,21 @@ class Topic extends Model
     {
         $this->belongsTo("App\User");
     }
+
+    /**
+     * Topicのコメントの合計数を配列で返す
+     *
+     * @param [type] $topics
+     * @return void
+     */
+    public static function countComment($topics)
+    {
+        $array = [];
+        foreach ($topics as $topic) {
+            $commentSum = Comment::where("topic_id", $topic->id)->count();
+            array_push($array, $commentSum);
+        }
+
+        return $array;
+    }
 }
