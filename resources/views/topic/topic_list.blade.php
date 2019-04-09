@@ -1,6 +1,9 @@
 @extends("layout.main")
 
 @section("content")
+
+@include("layout.form_topic")
+
 <div class="container">
     @foreach($topics as $topic)
     <div class="pt-4"></div>
