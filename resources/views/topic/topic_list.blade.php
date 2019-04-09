@@ -11,7 +11,7 @@
             <div class="row">
                 <p class="col text-right">{{ $topic->date }}</p>
             </div>
-            <a href="{{ action('CommentController@show', $topic->id) }}" class="btn btn-primary">
+            <a href="{{ route('topic.page', [$topic->id]) }}" class="btn btn-primary">
                 コメントを見る
                 <span class="badge badge-pill badge-light">{{ $numberOfComments[$loop->index] }}</span>
             </a>

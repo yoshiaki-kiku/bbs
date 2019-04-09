@@ -12,7 +12,10 @@
 */
 
 // トップページ
-Route::get('/', "TopicController@index");
+Route::get('/', "TopicController@index")->name("home");
+Route::get('topics/{id}', "TopicController@show")->name("topic.page");
+Route::post('/', "TopicController@store")->name("topic.store");
 
-// コメントパーげ
-Route::get('comments/{id}', "CommentController@show");
+// コメントページ
+Route::post('/comments', "CommentController@store")->name("comments.store");
+Route::get('comments/{id}', "CommentController@show")->name("comments.page");
