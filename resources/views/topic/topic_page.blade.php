@@ -1,7 +1,12 @@
 @extends("layout.main")
 
 @section("content")
+
 <div class="container bg-white m-4 p-0 mx-auto">
+    <div class="bg-light border">
+        @include("layout.form_comment")
+    </div>
+
     @foreach($comments as $comment)
     <div class="media border pt-2 pl-2">
         <img data-src="holder.js/48x48?theme=sky&size=8">

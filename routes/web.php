@@ -14,8 +14,7 @@
 // トップページ
 Route::get('/', "TopicController@index")->name("home");
 Route::post('/', "TopicController@store");
-Route::get('topics/{id}', "TopicController@show")->name("topic.page");
 
-// コメントページ
-// Route::post('/comments', "CommentController@store")->name("comments.store");
-// Route::get('comments/{id}', "CommentController@show")->name("comments.page");
+// トピックページ
+Route::get('topics/{id}', "TopicController@show")->name("topic.page");
+Route::post('topics/{id}', "CommentController@store");
