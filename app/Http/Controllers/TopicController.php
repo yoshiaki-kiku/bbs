@@ -29,7 +29,7 @@ class TopicController extends Controller
         $commentReplies = $commentModel->getRepliesComment($comments);
 
         return view("topic.topic_page", [
-            "id" => $topic->id,
+            "topic" => $topic,
             "comments" => $comments,
             "commentReplies" => $commentReplies,
         ]);

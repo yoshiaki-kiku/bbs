@@ -9,7 +9,7 @@
     </div>
     @endif
 
-    <form action="{{ route('topic.page', $id) }}" method="POST">
+    <form action="{{ route('topic.page', $topic->id) }}" method="POST">
         @csrf
         <div class="form-group">
             <textarea class="form-control" name="message" value="{{ old('message') }}" id=""
