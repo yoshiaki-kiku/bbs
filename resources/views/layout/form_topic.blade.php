@@ -1,4 +1,4 @@
-<div class="container py-2">
+<div class="container pb-2">
     @if($errors->any())
     <div class="alert alert-danger">
         <ul>
