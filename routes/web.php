@@ -18,3 +18,7 @@ Route::post('/', "TopicController@store");
 // トピックページ
 Route::get('topics/{topic}', "TopicController@show")->name("topic.page");
 Route::post('topics/{topic}', "CommentController@store");
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
