@@ -22,7 +22,7 @@
     </div>
     @endforeach
 </div>
-<div class="container p-4">
+<div class="container mt-4">
     {{ $topics->links() }}
 </div>
 @endsection
