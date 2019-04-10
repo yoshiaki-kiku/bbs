@@ -12,7 +12,7 @@ class TopicController extends Controller
     public function index()
     {
         $topicModel = new Topic();
-        $topics = $topicModel::orderBy("created_at", "desc")->take(6)->paginate(5);
+        $topics = $topicModel::orderBy("created_at", "desc")->paginate(5);
         $numberOfComments = $topicModel->countComment($topics);
 
         return view("topic.topic_list", [
@@ -21,14 +21,15 @@ class TopicController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show(Topic $topic)
     {
+
         $commentModel = new Comment();
-        $comments = $commentModel->with("user")->where([["topic_id", $id], ["comment_reply", 0]])->orderBy("created_at", "desc")->paginate(4);
+        $comments = $commentModel->with("user")->where([["topic_id", $topic->id], ["comment_reply", 0]])->orderBy("created_at", "desc")->paginate(4);
         $commentReplies = $commentModel->getRepliesComment($comments);
 
         return view("topic.topic_page", [
-            "id" => $id,
+            "id" => $topic->id,
             "comments" => $comments,
             "commentReplies" => $commentReplies,
         ]);

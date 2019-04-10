@@ -16,5 +16,5 @@ Route::get('/', "TopicController@index")->name("home");
 Route::post('/', "TopicController@store");
 
 // トピックページ
-Route::get('topics/{id}', "TopicController@show")->name("topic.page");
-Route::post('topics/{id}', "CommentController@store");
+Route::get('topics/{topic}', "TopicController@show")->name("topic.page");
+Route::post('topics/{topic}', "CommentController@store");
