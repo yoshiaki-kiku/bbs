@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Topic;
 use App\Comment;
 use App\Http\Requests\CreateTopic;
+use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
@@ -40,7 +41,7 @@ class TopicController extends Controller
         $topic = new Topic();
         $topic->title = $request->title;
         $topic->message = $request->message;
-        $topic->user_id = 1;
+        $topic->user_id = $request->user()->id;
         $topic->save();
 
         return redirect()->route("home")->with("message", "トピックを投稿しました。");
