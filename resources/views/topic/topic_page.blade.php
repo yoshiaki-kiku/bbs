@@ -42,7 +42,8 @@
                     @endif
                 </button>
             </p>
-            <div class="collapse show" id="collapse{{ $comment->id }}">
+            {{-- コメントがあるdivはデフォで開く --}}
+            <div class="collapse @if(isset($commentRepliesCount[$comment->id])) show @endif" id="collapse{{ $comment->id }}">
                 @isset($commentReplies[$comment->id])
                 @foreach($commentReplies[$comment->id] as $commentReply)
                 <div class="media border-left border-top pt-2 pl-2">
