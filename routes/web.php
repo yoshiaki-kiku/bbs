@@ -13,11 +13,11 @@
 
 // トップページ
 Route::get('/', "TopicController@index")->name("home");
-Route::post('/', "TopicController@store");
+Route::post('/', "TopicController@store")->middleware('auth');
 
 // トピックページ
 Route::get('topics/{topic}', "TopicController@show")->name("topic.page");
-Route::post('topics/{topic}', "CommentController@store");
+Route::post('topics/{topic}', "CommentController@store")->middleware('auth');
 
 Auth::routes();
 

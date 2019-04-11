@@ -12,7 +12,7 @@ class CommentController extends Controller
     {
         $comment = new Comment();
         $comment->message = $request->message;
-        $comment->user_id = 1;
+        $comment->user_id = $request->user()->id;
         $comment->topic_id = $id;
         $comment->save();
 
