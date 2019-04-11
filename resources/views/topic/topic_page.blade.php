@@ -32,8 +32,8 @@
                 {!! $comment->message_br !!}
             </div>
             <p class="ml-1">
-                <button type="button" class="btn btn-sm btn-secondary" aria-expanded="false" data-toggle="collapse"
-                    data-target="#collapseExample{{ $comment->id }}" aria-controls="collapseExample">
+                <button type="button" class="btn btn-sm btn-secondary" aria-expanded="true" data-toggle="collapse"
+                    data-target="#collapse{{ $comment->id }}" aria-controls="collapse{{ $comment->id }}">
                     ▼ 返信
                     @if(isset($commentRepliesCount[$comment->id]))
                     <span class="badge badge-pill ml-1 badge-light">{{ $commentRepliesCount[$comment->id] }}</span>
@@ -42,7 +42,7 @@
                     @endif
                 </button>
             </p>
-            <div class="collapse" id="collapseExample{{ $comment->id }}">
+            <div class="collapse show" id="collapse{{ $comment->id }}">
                 @isset($commentReplies[$comment->id])
                 @foreach($commentReplies[$comment->id] as $commentReply)
                 <div class="media border-left border-top pt-2 pl-2">
@@ -56,6 +56,13 @@
                 </div>
                 @endforeach
                 @endisset
+
+                <div class="media border-left border-top pt-2 pl-2">
+                    <div class="media-body pl-2">
+                        @include("layout.form_comment_reply")
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

@@ -25,11 +25,8 @@
                 placeholder="コメントを入力してください。" rows="3"></textarea>
         </div>
         <div class="text-right">
-            @if(Auth::check())
-            <button type="submit" class="btn btn-primary">コメントを投稿</button>
-            @else
-            <button type="submit" class="btn btn-primary disabled text-right" disabled>コメントを投稿</button>
-            @endif
+            <input class="btn btn-primary{{ $disabledButton }}" type="submit" name="newComment" value="投稿する"
+                {{ $disabledButton }}>
         </div>
     </form>
 </div>

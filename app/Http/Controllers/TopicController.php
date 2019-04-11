@@ -29,11 +29,15 @@ class TopicController extends Controller
         $comments = $commentModel->with("user")->where([["topic_id", $topic->id], ["comment_reply", 0]])->orderBy("created_at", "desc")->paginate(4);
         list($commentReplies, $commentRepliesCount) = $commentModel->getRepliesComment($comments);
 
+        // 投稿ボタンの有効無効
+        $disabledButton = (Auth::check()) ? "" : " disabled";
+
         return view("topic.topic_page", [
             "topic" => $topic,
             "comments" => $comments,
             "commentReplies" => $commentReplies,
             "commentRepliesCount" => $commentRepliesCount,
+            "disabledButton" => $disabledButton,
         ]);
     }
 

@@ -23,8 +23,10 @@ class CreateComment extends FormRequest
      */
     public function rules()
     {
+        // idは返信コメント時に返信コメントのidがあるか確認
         return [
             'message' => 'required|max:1000',
+            'commnet_reply_id' => 'sometimes|required|exists:comments,id',
         ];
     }
 
