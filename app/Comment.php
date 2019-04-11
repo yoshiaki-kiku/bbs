@@ -31,10 +31,10 @@ class Comment extends Model
     }
 
     /**
-     * 親IDでまとめられた、返信コメントの配列を返す
+     * 親IDでまとめられた、返信コメントの配列、各返信コメント数を返す
      *
      * @param [type] $comments
-     * @return void
+     * @return Array
      */
     public function getRepliesComment($comments)
     {
@@ -45,14 +45,19 @@ class Comment extends Model
             $comment_id_array[] = $comment->id;
         }
 
+        // トピックにある親コメントIDで必要なコメントで取得
         $commentReplies = $commentModel->with("user")->whereIn('comment_reply', $comment_id_array)->orderBy("created_at", "asc")->get();
 
-        $commentReply_array = [];
-
+        $commentReplyArray = [];
         foreach ($commentReplies as $commentReply) {
-            $commentReply_array[$commentReply->comment_reply][] = $commentReply;
+            $commentReplyArray[$commentReply->comment_reply][] = $commentReply;
         }
 
-        return $commentReply_array;
+        $commentReplyCountArray = [];
+        foreach($commentReplyArray as $key => $value){
+            $commentReplyCountArray[$key] = count($value);
+        }
+
+        return [$commentReplyArray, $commentReplyCountArray];
     }
 }
