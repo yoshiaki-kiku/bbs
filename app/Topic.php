@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Libs\Util;
 
 class Topic extends Model
 {
@@ -25,6 +26,13 @@ class Topic extends Model
         $carbon = new Carbon($this->created_at);
         $date = $carbon->isoFormat('YYYY年MM月DD日 LTS (ddd)');
         return $date;
+    }
+
+    public function getmessageBrAttribute()
+    {
+        $util = new Util;
+        $message = $util->textBr($this->message);
+        return $message;
     }
 
     /**

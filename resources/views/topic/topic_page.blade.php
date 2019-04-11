@@ -12,7 +12,7 @@
         <div class="media-body pl-2">
             <div class="mt-0 mb-2">{{ $topic->user->name }}｜{{ $topic->date }}</div>
             <div class="pb-2 pr-2">
-                {{ $topic->message }}
+                {!! $topic->message_br !!}
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
         <div class="media-body pl-2">
             <div class="mt-0 mb-2">{{ $comment->user->name }}｜{{ $comment->date }}</div>
             <div class="pb-2 pr-2">
-                {{ $comment->message }}
+                {!! $comment->message_br !!}
             </div>
             <p class="ml-1">
                 <button type="button" class="btn btn-sm btn-secondary" aria-expanded="false" data-toggle="collapse"

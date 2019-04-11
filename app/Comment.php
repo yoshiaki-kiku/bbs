@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Libs\Util;
 
 class Comment extends Model
 {
@@ -28,6 +29,13 @@ class Comment extends Model
         $carbon = new Carbon($this->created_at);
         $date = $carbon->isoFormat('YYYY年MM月DD日 LTS (ddd)');
         return $date;
+    }
+
+    public function getmessageBrAttribute()
+    {
+        $util = new Util;
+        $message = $util->textBr($this->message);
+        return $message;
     }
 
     /**

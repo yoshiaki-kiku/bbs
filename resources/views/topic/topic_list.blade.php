@@ -10,7 +10,7 @@
     <div class="card border">
         <h3 class="card-header bg-dark text-white">{{ $topic->title }}</h3>
         <div class="card-body">
-            <p class="card-text">{{ $topic->message }}</p>
+            <p class="card-text">{!! $topic->message_br !!}</p>
             <div class="row">
                 <p class="col text-right">{{ $topic->date }}</p>
             </div>
