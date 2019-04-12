@@ -15,12 +15,12 @@
     @endif
 
     @if(Auth::guest())
-    <div class="alert alert-info mr-2 pull-left">投稿するにはログインが必要です。</div>
+    <div class="alert alert-info">投稿するにはログインが必要です。</div>
     @endif
 
     <form action="{{ route('topic.page', $topic->id) }}" method="POST">
         @csrf
-        <div class="form-group">
+        <div class="form-group mb-2">
             <textarea class="form-control" name="message" value="{{ old('message') }}" id=""
                 placeholder="コメントを入力してください。" rows="3"></textarea>
         </div>

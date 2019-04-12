@@ -4,7 +4,7 @@
 
 @include("layout.form_topic")
 
-<div class="container">
+<div class="container px-2">
     @foreach($topics as $topic)
     <div class="pt-4"></div>
     <div class="card border">
@@ -23,6 +23,6 @@
     @endforeach
 </div>
 <div class="container mt-4">
-    {{ $topics->links() }}
+    {{ $topics->onEachSide(1)->links() }}
 </div>
 @endsection
