@@ -12,12 +12,18 @@ class CommentController extends Controller
     public function store(CreateComment $request, $id)
     {
         if (Input::get('newComment')) {
-            $this->newComment($request, $id);
+            $comment_id = $this->newComment($request, $id);
+            $message = "コメントを投稿しました。";
         } elseif (Input::get('replyComment')) {
-            $this->replyComment($request, $id);
+            $comment_id = $this->replyComment($request, $id);
+            $message = "返信を投稿しました。";
         }
 
-        return redirect()->route("topic.page", $id);
+        // 挿入コメントの位置に移動
+        return redirect()->route("topic.page", $id . "#{$comment_id}")->with([
+            "message" => $message,
+            "new_comment_id" => $comment_id
+        ]);
     }
 
     public function newComment(CreateComment $request, $id)
@@ -28,7 +34,8 @@ class CommentController extends Controller
         $comment->topic_id = $id;
         $comment->save();
 
-        return redirect()->route("topic.page", $id)->with("message", "コメントを投稿しました。");
+        // 挿入したIDを返す
+        return $comment->id;
     }
 
     /**
@@ -47,6 +54,7 @@ class CommentController extends Controller
         $comment->comment_reply = $request->comment_reply_id;
         $comment->save();
 
-        return redirect()->route("topic.page", $id)->with("message", "返信を投稿しました。");
+        // 挿入したIDを返す
+        return $comment->id;
     }
 }

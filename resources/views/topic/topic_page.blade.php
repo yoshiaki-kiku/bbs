@@ -23,8 +23,15 @@
         @include("layout.form_comment")
     </div>
 
+    {{-- 新着コメント用のバックカラー --}}
+    @php
+    $newCommentBgColorValue = 'background-color:#F1F8DE'
+    @endphp
+
     @foreach($comments as $comment)
-    <div class="media border pt-2 pl-2">
+    {{-- 親コメントエリア --}}
+
+    <div class="media border pt-2 pl-2" id="{{ $comment->id }}" stlye="{!! $comment->idCheck(session('new_comment_id'), $newCommentBgColorValue) !!}">
         <img data-src="holder.js/48x48?theme=sky&size=8">
         <div class="media-body pl-2">
             <div class="mt-0 mb-2">{{ $comment->user->name }}｜{{ $comment->date }}</div>
@@ -42,11 +49,14 @@
                     @endif
                 </button>
             </p>
+            {{-- 返信コメントエリア --}}
             {{-- コメントがあるdivはデフォで開く --}}
-            <div class="collapse @if(isset($commentRepliesCount[$comment->id])) show @endif" id="collapse{{ $comment->id }}">
+            <div class="collapse @if(isset($commentRepliesCount[$comment->id])) show @endif"
+                id="collapse{{ $comment->id }}">
                 @isset($commentReplies[$comment->id])
                 @foreach($commentReplies[$comment->id] as $commentReply)
-                <div class="media border-left border-top pt-2 pl-2">
+
+                <div class="media border-left border-top pt-2 pl-2" id="{{ $commentReply->id }}" style="{!! $commentReply->idCheck(session('new_comment_id'), $newCommentBgColorValue) !!}">
                     <img data-src="holder.js/48x48?theme=sky&size=8">
                     <div class="media-body pl-2">
                         <div class="mt-0 mb-2">{{ $commentReply->user->name }}｜{{ $commentReply->date }}</div>
@@ -55,6 +65,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 @endforeach
                 @endisset
 
@@ -63,7 +75,6 @@
                         @include("layout.form_comment_reply")
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

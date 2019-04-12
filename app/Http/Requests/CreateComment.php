@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreateComment extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -36,4 +37,5 @@ class CreateComment extends FormRequest
             'message' => 'コメント',
         ];
     }
+
 }
