@@ -11,40 +11,9 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-        <a class="navbar-brand" href="{{ route('home') }}">交流サイト</a>
+    @include("layout.navbar")
 
-        <ul class="navbar-nav ml-auto">
-            @if(Auth::check())
-            <li class="nav-item navbar-text text-light m-1 mr-4">
-                ようこそ、{{ Auth::user()->name }} さん
-            </li>
-            <li class="nav-item m-1">
-                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <button type="button" class="btn btn-light">ログアウト</button>
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </li>
-            @else
-            <li class="nav-item m-1">
-                <a href="{{ route('login') }}">
-                    <button class="btn btn-light" type="button">
-                        ログイン
-                    </button>
-                </a>
-            </li>
-            <li class="nav-item m-1">
-                <a href="{{ route('register') }}">
-                    <button class="btn btn-success" type="button">
-                        会員登録
-                    </button>
-                </a>
-            </li>
-            @endif
-        </ul>
-    </nav>
+
 
     <div class="container mt-4 p-0">
         @yield('content')
