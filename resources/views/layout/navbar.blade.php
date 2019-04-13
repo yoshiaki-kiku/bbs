@@ -6,20 +6,17 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <!-- <form class="form-inline my-2 my-lg-0 mr-auto">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-info text-light my-2 my-sm-0" type="submit">検索</button>
-        </form> -->
 
-        <form class="form-inline my-2 my-lg-0 mr-auto">
-            <select class="form-control mr-0 mr-sm-2 mb-2 mb-sm-0">
-                <option>トピック名</option>
-                <option>コメント</option>
+
+        <form action="{{ route('search.result') }}" class="form-inline my-2 my-lg-0 mr-auto" method="get">
+            <select class="form-control mr-0 mr-sm-2 mb-2 mb-sm-0" name="column">
+                <option value="topic">トピック名</option>
+                <option value="comment">コメント</option>
             </select>
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                <input name="keywords" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
                 <div class="input-group-append">
-                    <button class="btn btn-success" type="button">検索</button>
+                    <button class="btn btn-success" type="submit">検索</button>
                 </div>
             </div>
         </form>

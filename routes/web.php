@@ -19,6 +19,9 @@ Route::post('/', "TopicController@store")->middleware('auth');
 Route::get('topics/{topic}', "TopicController@show")->name("topic.page");
 Route::post('topics/{topic}', "CommentController@store")->middleware('auth');
 
+// 検索
+Route::get('search', "SearchController@show")->name("search.result");
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
