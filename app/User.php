@@ -40,12 +40,12 @@ class User extends Authenticatable
 
     public function topic()
     {
-        return $this->hasMany("App\Topic");
+        return $this->hasMany("App\Models\Topic");
     }
 
     public function comment()
     {
-        return $this->hasMany("App\Comment");
+        return $this->hasMany("App\Models\Comment");
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Comment;
+use App\Models\Comment;
 use App\Http\Requests\CreateComment;
 use Illuminate\Support\Facades\Input;
 

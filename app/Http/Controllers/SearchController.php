@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Comment;
+use App\Models\Comment;
 use Validator;
 use App\Models\Search;
-use App\Topic;
+use App\Models\Topic;
 
 /**
  * 検索処理のためのクラス

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
@@ -13,7 +13,7 @@ class Topic extends Model
 
     public function comment()
     {
-        return $this->hasMany("App\Comment");
+        return $this->hasMany("App\Models\Comment");
     }
 
     public function user()
