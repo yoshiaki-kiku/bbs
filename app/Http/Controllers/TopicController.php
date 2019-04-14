@@ -13,7 +13,8 @@ class TopicController extends Controller
     public function index()
     {
         $topicModel = new Topic();
-        $topics = $topicModel::orderBy("created_at", "desc")->paginate(5);
+        $topics = $topicModel::orderBy("created_at", "desc")
+            ->paginate(config("bbs.paginate.topPage"));
         $numberOfComments = $topicModel->countComment($topics);
 
         return view("topic.topic_list", [
@@ -26,7 +27,8 @@ class TopicController extends Controller
     {
 
         $commentModel = new Comment();
-        $comments = $commentModel->with("user")->where([["topic_id", $topic->id], ["comment_reply", 0]])->orderBy("created_at", "desc")->paginate(4);
+        $comments = $commentModel->with("user")->where([["topic_id", $topic->id], ["comment_reply", 0]])
+            ->orderBy("created_at", "desc")->paginate(config("bbs.paginate.topicPage"));
         list($commentReplies, $commentRepliesCount) = $commentModel->getRepliesComment($comments);
 
         // 投稿ボタンの有効無効

@@ -1,5 +1,4 @@
-<div class="container pb-2 px-2">
-
+<div class="bg-white m-2 p-2">
     {{-- フラッシュメッセージの表示 --}}
     @if (session('message'))
     <div class="alert alert-success">{{ session('message') }}</div>
@@ -16,7 +15,7 @@
     @endif
 
     @if(Auth::guest())
-    <div class="alert alert-info">投稿するにはログインが必要です。</div>
+    <div class="alert alert-info">トピックを投稿するにはログインが必要です。</div>
     @endif
 
     <form action="{{ route('home') }}" method="POST">

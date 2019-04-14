@@ -1,4 +1,8 @@
-
-.my-bg-info{
-    background-color: red;
+body {
+    background: #DAE0E6 !important;
 }
+
+.topic-title-background{
+    background-color: #e1f2e8;
+}
+

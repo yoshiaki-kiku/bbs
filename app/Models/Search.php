@@ -9,12 +9,10 @@ class Search extends Model
 {
     public $rules = [
         'keywords' => 'required|max:1000',
-        'column' => 'required|in:topic,comment',
     ];
 
     public $attributes = [
         'keywords' => 'キーワード',
-        'column' => 'カラム',
     ];
 
     /**

@@ -8,13 +8,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-        <form action="{{ route('search.result') }}" class="form-inline my-2 my-lg-0 mr-auto" method="get">
-            <select class="form-control mr-0 mr-sm-2 mb-2 mb-sm-0" name="column">
-                <option value="topic">トピック名</option>
-                <option value="comment">コメント</option>
-            </select>
+        <form action="{{ route('search.result') }}" class="ml-0 ml-lg-2 my-2 my-lg-0 d-inline w-75 mr-auto" method="get">
             <div class="input-group">
-                <input name="keywords" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                <input name="keywords" type="text" class="form-control" placeholder="トピック検索" aria-label="" aria-describedby="basic-addon1">
                 <div class="input-group-append">
                     <button class="btn btn-success" type="submit">検索</button>
                 </div>
@@ -22,7 +18,7 @@
         </form>
 
 
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mt-2 mt-lg-0">
             @if(Auth::check())
             <li class="nav-item navbar-text text-light mr-4">
                 ようこそ、{{ Auth::user()->name }} さん
