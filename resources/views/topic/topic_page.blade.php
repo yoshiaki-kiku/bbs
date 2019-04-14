@@ -4,7 +4,7 @@
 
 @section("content")
 
-<h1 class="p-2">{{ $topic->title }}</h1>
+<h1 class="p-2 topic-title-background mb-0">{{ $topic->title }}</h1>
 
 <div class="container border bg-white py-2 p-0">
     <div class="px-2">
