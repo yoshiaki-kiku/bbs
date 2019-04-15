@@ -5,8 +5,7 @@
 @include("layout.form_topic")
 
 @foreach($topics as $topic)
-<div class="pt-4"></div>
-<div class="card border mx-2">
+<div class="card border mx-2 my-4">
     <h3 class="card-header topic-title-background">{{ $topic->title }}</h3>
     <div class="card-body">
         <p class="card-text">{!! $topic->message_br !!}</p>
