@@ -20,7 +20,7 @@
 
 <div class="container bg-white mt-4 p-0">
     <div class="bg-light border">
-        @include("layout.form_comment")
+        @include("topic.component.form_comment")
     </div>
 
     {{-- 新着コメント用のバックカラー --}}
@@ -74,7 +74,7 @@
             @endisset
 
             <div class="border-left border-top p-2">
-                @include("layout.form_comment_reply")
+                @include("topic.component.form_comment_reply")
             </div>
         </div>
     </div>

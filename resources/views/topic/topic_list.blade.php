@@ -2,7 +2,7 @@
 
 @section("content")
 
-@include("layout.form_topic")
+@include("topic.component.form_topic")
 
 @foreach($topics as $topic)
 <div class="card border mx-2 my-4">
