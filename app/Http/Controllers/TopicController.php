@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
+    /**
+     * トピック一覧
+     *
+     * @return void
+     */
     public function index()
     {
         $topicModel = new Topic();
@@ -23,6 +28,12 @@ class TopicController extends Controller
         ]);
     }
 
+    /**
+     * トピックページ、コメント含む
+     *
+     * @param Topic $topic
+     * @return void
+     */
     public function show(Topic $topic)
     {
 
@@ -43,6 +54,12 @@ class TopicController extends Controller
         ]);
     }
 
+    /**
+     * トピックの投稿処理
+     *
+     * @param CreateTopic $request
+     * @return void
+     */
     public function store(CreateTopic $request)
     {
         $topic = new Topic();
@@ -52,5 +69,48 @@ class TopicController extends Controller
         $topic->save();
 
         return redirect()->route("home")->with("message", "トピックを投稿しました。");
+    }
+
+    public function updateForm()
+    {
+        //
+    }
+
+    public function updateConfirm()
+    {
+        //
+    }
+
+    public function update()
+    {
+        //
+    }
+
+    /**
+     * トピック削除の確認画面
+     *
+     * @param Topic $topic
+     * @return void
+     */
+    public function deleteConfirm(Topic $topic)
+    {
+        return view("topic.delete_confirm", [
+            "topic" => $topic,
+        ]);
+    }
+
+    public function delete(Request $request)
+    {
+        // 存在確認
+        $topic = Topic::findOrFail($request->id);
+
+        // 関連コメントの削除
+        $topic->comment()->delete();
+
+        // トピックを削除
+        $topic->delete();
+
+        return redirect()->route("home")
+            ->with('message', "トピックID「{$topic->id}」を削除しました。");
     }
 }

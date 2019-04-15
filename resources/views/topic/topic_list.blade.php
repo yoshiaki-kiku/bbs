@@ -16,6 +16,9 @@
             コメントを見る
             <span class="badge badge-pill badge-light">{{ $numberOfComments[$loop->index] }}</span>
         </a>
+        <a href="{{ route('topic.delete.confirm', [$topic->id]) }}" class="btn btn-danger ml-2">
+            トピックの削除
+        </a>
     </div>
 </div>
 @endforeach
