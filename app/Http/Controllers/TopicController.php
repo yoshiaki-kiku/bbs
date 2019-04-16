@@ -71,19 +71,58 @@ class TopicController extends Controller
         return redirect()->route("home")->with("message", "トピックを投稿しました。");
     }
 
-    public function updateForm()
+    /**
+     * トピック編集フォーム
+     *
+     * @param Topic $topic
+     * @return void
+     */
+    public function updateForm(Topic $topic)
     {
-        //
+        return view("topic.update_form", [
+            "topic" => $topic,
+        ]);
     }
 
-    public function updateConfirm()
+    /**
+     * トピック編集の確認画面
+     *
+     * @param CreateTopic $request
+     * @return void
+     */
+    public function updateConfirm(CreateTopic $request)
     {
-        //
+        // 存在確認
+        $topic = Topic::findOrFail($request->id);
+
+        $topic->title = $request->title;
+        $topic->message = $request->message;
+
+        return view("topic.update_confirm", [
+            "topic" => $topic,
+        ]);
     }
 
-    public function update()
+    public function update(CreateTopic $request)
     {
-        //
+        // 存在確認
+        $topic = Topic::findOrFail($request->id);
+
+        // 確認画面で戻るボタンが押された場合
+        if ($request->get('back')) {
+            // 入力画面へ戻る
+            return redirect()
+                ->route('topic.update.form', $request->id)
+                ->withInput();
+        }
+
+        // update処理
+        $topic->title = $request->title;
+        $topic->message = $request->message;
+        $topic->save();
+
+        return redirect()->route("home")
+            ->with('message', "トピックID「{$topic->id}」を編集しました。");
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends("layout.main")
 
-@section("title", "トピック削除")
+@section("title", "トピックの削除")
 
 @section("content")
 <h1 class="topic-title-background mb-0 p-2">トピックの削除</h1>
@@ -19,17 +19,15 @@
     <h2>投稿日</h2>
     <p class="pl-2">{!! $topic->date !!}</p>
 
-    <div class="d-flex flex-row">
-        <form action="{{ route('topic.delete') }}" method="post">
-            @csrf
-            <input type="hidden" name="id" value="{{ $topic->id }}">
-            <input class="btn btn-danger mr-4" type="submit" value="削除する">
-        </form>
-        <div>
-            <a href="{{ url()->previous() }}">
-                <button class="btn btn-primary">戻る</button>
-            </a>
-        </div>
+    <form action="{{ route('topic.delete') }}" method="post">
+        @csrf
+        <input type="hidden" name="id" value="{{ $topic->id }}">
+        <input class="btn btn-danger" type="submit" value="削除する">
+    </form>
+    <div class="mt-3">
+        <a href="{{ url()->previous() }}">
+            <button class="btn btn-primary">戻る</button>
+        </a>
     </div>
 </div>
 

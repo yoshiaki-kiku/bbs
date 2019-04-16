@@ -20,9 +20,9 @@ Route::get('topics/delete_confirm/{topic}', "TopicController@deleteConfirm")->na
 Route::post('topics/delete', "TopicController@delete")->name("topic.delete");
 
 // トピックの更新
-Route::get('topics/update_form/{topic}', "TopicController@deleteConfirm")->name("topic.update.form");
-Route::post('topics/update_confirm', "TopicController@delete")->name("topic.update.confirm");
-Route::post('topics/update', "TopicController@delete")->name("topic.update");
+Route::get('topics/update_form/{topic}', "TopicController@updateForm")->name("topic.update.form");
+Route::post('topics/update_confirm', "TopicController@updateConfirm")->name("topic.update.confirm");
+Route::post('topics/update', "TopicController@update")->name("topic.update");
 
 // トピックページ
 Route::get('topics/{topic}', "TopicController@show")->name("topic.page");
