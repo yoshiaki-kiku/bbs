@@ -28,6 +28,15 @@ Route::post('topics/update', "TopicController@update")->name("topic.update");
 Route::get('topics/{topic}', "TopicController@show")->name("topic.page");
 Route::post('topics/{topic}', "CommentController@store")->middleware('auth');
 
+// コメントの削除
+Route::get('comments/delete_confirm/{comment}', "CommentController@deleteConfirm")->name("comment.delete.confirm");
+Route::post('comments/delete', "CommentController@delete")->name("comment.delete");
+
+// コメントの更新
+Route::get('comments/update_form/{comment}', "CommentController@updateForm")->name("comment.update.form");
+Route::post('comments/update_confirm', "CommentController@updateConfirm")->name("comment.update.confirm");
+Route::post('comments/update', "CommentController@update")->name("comment.update");
+
 // 検索
 Route::get('search', "SearchController@show")->name("search.result");
 

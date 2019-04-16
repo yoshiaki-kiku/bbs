@@ -40,6 +40,15 @@
             <div class="d-flex flex-row py-2">
                 {!! $comment->message_br !!}
             </div>
+            <div class="d-flex flex-row mb-2">
+                <a href="{{ route('comment.update.form', [$comment->id]) }}" class="btn btn-sm btn-warning">
+                    編集
+                </a>
+                <a href="{{ route('comment.delete.confirm', [$comment->id]) }}" class="btn btn-sm btn-danger ml-2">
+                    削除
+                </a>
+            </div>
+
             <div class="d-flex flex-row">
                 <button type="button" class="btn btn-sm btn-secondary" aria-expanded="true" data-toggle="collapse"
                     data-target="#collapse{{ $comment->id }}" aria-controls="collapse{{ $comment->id }}">
@@ -67,6 +76,15 @@
                     </div>
                     <div class="d-flex flex-row py-2">
                         {!! $commentReply->message_br !!}
+                    </div>
+                    <div class="d-flex flex-row">
+                        <a href="{{ route('comment.update.form', [$commentReply->id]) }}" class="btn btn-sm btn-warning">
+                            編集
+                        </a>
+                        <a href="{{ route('comment.delete.confirm', [$commentReply->id]) }}"
+                            class="btn btn-sm btn-danger ml-2">
+                            削除
+                        </a>
                     </div>
                 </div>
             </div>

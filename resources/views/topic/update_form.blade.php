@@ -13,7 +13,7 @@
                 placeholder="">
         </div>
         <div class="form-group">
-            <label for="commentInput">コメント欄</label>
+            <label for="commentInput">メッセージ</label>
             <textarea name="message" class="form-control" id="commentInput" rows="3">{{ old('message', $topic->message)  }}</textarea>
         </div>
         <input class="btn btn-danger" type="submit" value="確認画面">
