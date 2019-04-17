@@ -40,6 +40,7 @@
             <div class="d-flex flex-row py-2">
                 {!! $comment->message_br !!}
             </div>
+            @can("admin")
             <div class="d-flex flex-row mb-2">
                 <a href="{{ route('comment.update.form', [$comment->id]) }}" class="btn btn-sm btn-warning">
                     編集
@@ -48,6 +49,7 @@
                     削除
                 </a>
             </div>
+            @endcan
 
             <div class="d-flex flex-row">
                 <button type="button" class="btn btn-sm btn-secondary" aria-expanded="true" data-toggle="collapse"
@@ -77,6 +79,7 @@
                     <div class="d-flex flex-row py-2">
                         {!! $commentReply->message_br !!}
                     </div>
+                    @can("admin")
                     <div class="d-flex flex-row">
                         <a href="{{ route('comment.update.form', [$commentReply->id]) }}" class="btn btn-sm btn-warning">
                             編集
@@ -86,6 +89,7 @@
                             削除
                         </a>
                     </div>
+                    @endcan
                 </div>
             </div>
             @endforeach

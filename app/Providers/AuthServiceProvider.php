@@ -25,6 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // configに設定されているUserIDのみ管理者権限にする
+        Gate::define("admin", function ($user) {
+            return (in_array($user->id, config("bbs.admin")));
+        });
     }
 }

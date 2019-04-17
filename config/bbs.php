@@ -5,4 +5,8 @@ return [
         "topicPage" => 20,
         "searchResult" => 10,
     ],
+    // 管理者のユーザーID一覧
+    "admin" =>[
+        51,
+    ],
 ];
