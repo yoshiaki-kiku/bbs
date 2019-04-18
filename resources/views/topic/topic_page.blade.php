@@ -4,7 +4,7 @@
 
 @section("content")
 
-<h1 class="p-2 topic-title-background mb-0">{{ $topic->title }}</h1>
+<h1 class="p-3 topic-title-background mb-0">{{ $topic->title }}</h1>
 
 <div class="container border bg-white py-2 p-0">
     <div class="px-2">
@@ -35,25 +35,32 @@
         <div class="px-2">
             <div class="d-flex flex-row">
                 <div class="mr-2"><img data-src="holder.js/40x40?theme=sky&size=8"></div>
-                <div>{{ $comment->user->name }}｜{{ $comment->date }}あああああああああああああああ</div>
+                <div>{{ $comment->user->name }}｜{{ $comment->date }}</div>
             </div>
             <div class="d-flex flex-row py-2">
                 {!! $comment->message_br !!}
             </div>
-            @can("admin")
+            <div class="d-flex flex-row mb-2 justify-content-end">
+                <div>
+                    <vote-component vote="{{ $comment->vote }}"></vote-component>
+                </div>
+            </div>
+
             <div class="d-flex flex-row mb-2">
+                @can("admin")
                 <a href="{{ route('comment.update.form', [$comment->id]) }}" class="btn btn-sm btn-warning">
                     編集
                 </a>
                 <a href="{{ route('comment.delete.confirm', [$comment->id]) }}" class="btn btn-sm btn-danger ml-2">
                     削除
                 </a>
+                @endcan
             </div>
-            @endcan
 
             <div class="d-flex flex-row">
-                <button type="button" class="btn btn-sm btn-secondary" aria-expanded="true" data-toggle="collapse"
-                    data-target="#collapse{{ $comment->id }}" aria-controls="collapse{{ $comment->id }}">
+                <button type="button" class="btn btn-sm btn-secondary mr-auto" aria-expanded="true"
+                    data-toggle="collapse" data-target="#collapse{{ $comment->id }}"
+                    aria-controls="collapse{{ $comment->id }}">
                     ▼ 返信
                     @if(isset($commentRepliesCount[$comment->id]))
                     <span class="badge badge-pill ml-1 badge-light">{{ $commentRepliesCount[$comment->id] }}</span>
@@ -79,9 +86,13 @@
                     <div class="d-flex flex-row py-2">
                         {!! $commentReply->message_br !!}
                     </div>
+                    <div class="d-flex flex-row mb-2 justify-content-end">
+                        <vote-component vote="{{ $commentReply->vote }}"></vote-component>
+                    </div>
                     @can("admin")
                     <div class="d-flex flex-row">
-                        <a href="{{ route('comment.update.form', [$commentReply->id]) }}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('comment.update.form', [$commentReply->id]) }}"
+                            class="btn btn-sm btn-warning">
                             編集
                         </a>
                         <a href="{{ route('comment.delete.confirm', [$commentReply->id]) }}"
