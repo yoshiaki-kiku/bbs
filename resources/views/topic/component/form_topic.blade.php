@@ -1,4 +1,4 @@
-<div class="bg-white m-2 p-2">
+<div class="bg-white m-2 p-3">
     {{-- フラッシュメッセージの表示 --}}
     @if (session('message'))
     <div class="alert alert-success">{{ session('message') }}</div>
