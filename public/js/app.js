@@ -1770,10 +1770,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["vote"],
+  props: {
+    vote: [String, Number],
+    commentId: [String, Number]
+  },
+  data: function data() {
+    return {
+      voteDisplay: this.vote,
+      clickFlag: false,
+      errorFlag: false,
+      errorMessage: ""
+    };
+  },
   mounted: function mounted() {
-    console.log("ExampleComponent mounted.");
+    console.log("vote mounted.");
+  },
+  methods: {
+    // voteをpostする処理
+    voteAction: function voteAction() {
+      var _this = this;
+
+      // voteするコメントID
+      var params = {
+        id: this.commentId
+      }; // クリックされてなければ処理する
+
+      if (this.clickFlag === false) {
+        // クリック済みにする
+        // 連打防止のため処理前にフラグを切り替える
+        this.clickFlag = !this.clickFlag;
+        axios.post("/comments/vote", params).then(function (response) {
+          // 更新されたvoteを書き込む
+          _this.voteDisplay = response.data;
+        })["catch"](function (error) {
+          _this.errorFlag = true;
+
+          if (error.response.status == 401) {
+            _this.errorMessage = "goodにはログインが必要です。";
+          } else if (error.response.status == 403) {
+            _this.errorMessage = error.response.data.message;
+          } else {
+            _this.errorMessage = "投票エラーになります。";
+          }
+        })["finally"](function () {//
+        });
+      }
+    },
+    // vote状況でクラスを適用
+    getBtnClass: function getBtnClass() {
+      // 3通りのクラス、
+      // クリック前、クリック済み、クリック済みでエラー
+      return {
+        'btn-outline-info': !this.clickFlag,
+        'btn-info text-light': this.clickFlag && !this.errorFlag,
+        'btn-outline-danger': this.clickFlag && this.errorFlag
+      };
+    }
   }
 });
 
@@ -37068,10 +37124,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "btn btn-outline-info btn-sm" }, [
-    _c("i", { staticClass: "far fa-thumbs-up my-vote-icon" }),
-    _vm._v("\n    Good "),
-    _c("strong", [_vm._v(_vm._s(_vm.vote))])
+  return _c("div", { staticClass: "text-right" }, [
+    _c(
+      "div",
+      {
+        staticClass: "btn btn-sm",
+        class: _vm.getBtnClass(),
+        on: { click: _vm.voteAction }
+      },
+      [
+        _c("i", { staticClass: "far fa-thumbs-up my-vote-icon" }),
+        _vm._v("\n        Good "),
+        _c("strong", [_vm._v(_vm._s(_vm.voteDisplay))])
+      ]
+    ),
+    _vm._v(" "),
+    _vm.errorFlag
+      ? _c("div", { staticClass: "alert alert-warning mt-2 mb-0" }, [
+          _vm._v(_vm._s(_vm.errorMessage))
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -49261,7 +49333,8 @@ try {
  */
 
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // Ajaxリクエストであることを示すヘッダーを付与する
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

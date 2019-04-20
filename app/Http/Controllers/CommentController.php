@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Http\Requests\CreateComment;
 use Illuminate\Support\Facades\Input;
+use App\Models\Vote;
 
 class CommentController extends Controller
 {
@@ -164,5 +165,38 @@ class CommentController extends Controller
 
         return redirect()->route("home")
             ->with('message', "コメントID「{$comment->id}」を削除しました。");
+    }
+
+    /**
+     * コメント投票ボタンの処理
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function vote(Request $request)
+    {
+        // 存在確認
+        // 404
+        $comment = Comment::findOrFail($request->id);
+
+        // voteの履歴の存在を確認
+        $vote = new Vote();
+        $existsFlag = $vote->where([["user_id", $request->user()->id], ["comment_id", $request->id]])->exists();
+
+        // 存在する場合は終了
+        // 存在しないなら履歴に追加
+        if ($existsFlag) {
+            abort(403, "二重投票になります。");
+        } else {
+            $vote = new Vote();
+            $vote->user_id = $request->user()->id;
+            $vote->comment_id = $request->id;
+            $vote->save();
+        }
+
+        // voteを増やす
+        $comment->vote += 1;
+        $comment->save();
+        return $comment->vote;
     }
 }

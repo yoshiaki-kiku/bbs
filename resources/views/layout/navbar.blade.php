@@ -20,7 +20,7 @@
 
         <ul class="navbar-nav mt-2 mt-lg-0">
             @if(Auth::check())
-            <li class="nav-item navbar-text text-light mr-4">
+            <li class="nav-item navbar-text text-light mx-4">
                 ようこそ、{{ Auth::user()->name }} さん
             </li>
             <li class="nav-item">

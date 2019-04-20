@@ -12,7 +12,7 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
-} catch (e) {}
+} catch (e) { }
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -22,6 +22,7 @@ try {
 
 window.axios = require('axios');
 
+// Ajaxリクエストであることを示すヘッダーを付与する
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**

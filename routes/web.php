@@ -15,6 +15,7 @@
 Route::get('/', "TopicController@index")->name("home");
 Route::post('/', "TopicController@store")->middleware('auth');
 
+// 管理者権限、トピック操作
 Route::group(['middleware' => ['auth', 'can:admin']], function () {
     // トピックの削除
     Route::get('topics/delete_confirm/{topic}', "TopicController@deleteConfirm")->name("topic.delete.confirm");
@@ -30,6 +31,7 @@ Route::group(['middleware' => ['auth', 'can:admin']], function () {
 Route::get('topics/{topic}', "TopicController@show")->name("topic.page");
 Route::post('topics/{topic}', "CommentController@store")->middleware('auth');
 
+// 管理者権限、コメント操作
 Route::group(['middleware' => ['auth', 'can:admin']], function () {
     // コメントの削除
     Route::get('comments/delete_confirm/{comment}', "CommentController@deleteConfirm")->name("comment.delete.confirm");
@@ -43,6 +45,9 @@ Route::group(['middleware' => ['auth', 'can:admin']], function () {
 
 // 検索
 Route::get('search', "SearchController@show")->name("search.result");
+
+// 投票
+Route::post("comments/vote", "CommentController@vote")->middleware('auth');
 
 Auth::routes();
 

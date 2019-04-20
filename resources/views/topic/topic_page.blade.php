@@ -42,20 +42,20 @@
             </div>
             <div class="d-flex flex-row mb-2 justify-content-end">
                 <div>
-                    <vote-component vote="{{ $comment->vote }}"></vote-component>
+                    <vote-component vote="{{ $comment->vote }}" comment-id="{{ $comment->id }}"></vote-component>
                 </div>
             </div>
 
+            @can("admin")
             <div class="d-flex flex-row mb-2">
-                @can("admin")
                 <a href="{{ route('comment.update.form', [$comment->id]) }}" class="btn btn-sm btn-warning">
                     編集
                 </a>
                 <a href="{{ route('comment.delete.confirm', [$comment->id]) }}" class="btn btn-sm btn-danger ml-2">
                     削除
                 </a>
-                @endcan
             </div>
+            @endcan
 
             <div class="d-flex flex-row">
                 <button type="button" class="btn btn-sm btn-secondary mr-auto" aria-expanded="true"
@@ -87,7 +87,8 @@
                         {!! $commentReply->message_br !!}
                     </div>
                     <div class="d-flex flex-row mb-2 justify-content-end">
-                        <vote-component vote="{{ $commentReply->vote }}"></vote-component>
+                        <vote-component vote="{{ $commentReply->vote }}" comment-id="{{ $commentReply->id }}">
+                        </vote-component>
                     </div>
                     @can("admin")
                     <div class="d-flex flex-row">
