@@ -1,7 +1,7 @@
 <template>
     <div class="form-group w-50">
         <div class="custom-file">
-            <input v-on:change="onFileChange" type="file" class="custom-file-input" id="customFile" lang="ja">
+            <input v-on:change="onFileChange" name="post_image" type="file" class="custom-file-input" id="customFile" lang="ja">
             <label class="custom-file-label" for="customFile">{{ fileName }}</label>
         </div>
         <img class="img-thumbnail" style="height:100px;" v-show="uploadedImage" :src="uploadedImage">

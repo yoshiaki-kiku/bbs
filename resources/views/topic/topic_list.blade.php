@@ -8,6 +8,11 @@
     <h3 class="card-header topic-title-background">{{ $topic->title }}</h3>
     <div class="card-body">
         <p class="card-text">{!! $topic->message_br !!}</p>
+        @isset($topic->image_path)
+        <div>
+            <img class="img-thumbnail" src="{{ asset('/storage/post_images/' .$topic->image_path) }}">
+        </div>
+        @endisset
         <div class="row">
             <p class="col text-right">{{ $topic->date }}</p>
         </div>

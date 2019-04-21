@@ -18,12 +18,13 @@
     <div class="alert alert-info">投稿するにはログインが必要です。</div>
     @endif
 
-    <form action="{{ route('topic.page', $topic->id) }}" method="POST">
+    <form action="{{ route('topic.page', $topic->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group mb-2">
             <textarea class="form-control" name="message" value="{{ old('message') }}" id=""
                 placeholder="コメントを入力してください。" rows="3"></textarea>
         </div>
+        <select-file-component></select-file-component>
         <div class="text-right">
             <input class="btn btn-primary{{ $disabledButton }}" type="submit" name="newComment" value="投稿する"
                 {{ $disabledButton }}>

@@ -37183,7 +37183,12 @@ var render = function() {
     _c("div", { staticClass: "custom-file" }, [
       _c("input", {
         staticClass: "custom-file-input",
-        attrs: { type: "file", id: "customFile", lang: "ja" },
+        attrs: {
+          name: "post_image",
+          type: "file",
+          id: "customFile",
+          lang: "ja"
+        },
         on: { change: _vm.onFileChange }
       }),
       _vm._v(" "),

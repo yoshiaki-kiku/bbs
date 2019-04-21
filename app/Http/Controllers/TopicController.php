@@ -7,6 +7,7 @@ use App\Models\Topic;
 use App\Models\Comment;
 use App\Http\Requests\CreateTopic;
 use Illuminate\Support\Facades\Auth;
+use App\Libs\Util;
 
 class TopicController extends Controller
 {
@@ -62,10 +63,20 @@ class TopicController extends Controller
      */
     public function store(CreateTopic $request)
     {
+
         $topic = new Topic();
         $topic->title = $request->title;
         $topic->message = $request->message;
         $topic->user_id = $request->user()->id;
+
+        // 画像の保存
+        if ($request->hasFile("post_image")) {
+            $util = new Util();
+            $fileName = $util->createImageFileName($request->post_image);
+            $request->post_image->storeAs('public/post_images', $fileName);
+            $topic->image_path =  $fileName;
+        }
+
         $topic->save();
 
         return redirect()->route("home")->with("message", "トピックを投稿しました。");

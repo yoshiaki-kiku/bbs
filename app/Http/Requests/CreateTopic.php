@@ -26,6 +26,7 @@ class CreateTopic extends FormRequest
         return [
             'title' => 'required|max:50',
             'message' => 'required|max:1000',
+            'post_image' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 

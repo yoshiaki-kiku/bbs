@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Http\Requests\CreateComment;
 use Illuminate\Support\Facades\Input;
 use App\Models\Vote;
+use App\Libs\Util;
 
 class CommentController extends Controller
 {
@@ -48,6 +49,15 @@ class CommentController extends Controller
         $comment->message = $request->message;
         $comment->user_id = $request->user()->id;
         $comment->topic_id = $id;
+
+        // 画像の保存
+        if ($request->hasFile("post_image")) {
+            $util = new Util();
+            $fileName = $util->createImageFileName($request->post_image);
+            $request->post_image->storeAs('public/post_images', $fileName);
+            $comment->image_path =  $fileName;
+        }
+
         $comment->save();
 
         // 挿入したIDを返す
@@ -68,6 +78,15 @@ class CommentController extends Controller
         $comment->user_id = $request->user()->id;
         $comment->topic_id = $id;
         $comment->comment_reply = $request->comment_reply_id;
+
+        // 画像の保存
+        if ($request->hasFile("post_image")) {
+            $util = new Util();
+            $fileName = $util->createImageFileName($request->post_image);
+            $request->post_image->storeAs('public/post_images', $fileName);
+            $comment->image_path =  $fileName;
+        }
+
         $comment->save();
 
         // 挿入したIDを返す

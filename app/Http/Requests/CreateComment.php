@@ -28,6 +28,7 @@ class CreateComment extends FormRequest
         return [
             'message' => 'required|max:1000',
             'commnet_reply_id' => 'sometimes|required|exists:comments,id',
+            'post_image' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 

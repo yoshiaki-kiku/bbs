@@ -18,7 +18,7 @@
     <div class="alert alert-info">トピックを投稿するにはログインが必要です。</div>
     @endif
 
-    <form action="{{ route('home') }}" method="POST">
+    <form action="{{ route('home') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <input type="text" name="title" value="{{ old('title') }}" class="form-control" id=""

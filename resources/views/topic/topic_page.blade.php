@@ -15,6 +15,11 @@
         <div class="d-flex flex-row py-2">
             {!! $topic->message_br !!}
         </div>
+        @isset($topic->image_path)
+        <div>
+            <img class="img-thumbnail" src="{{ asset('/storage/post_images/' .$topic->image_path) }}">
+        </div>
+        @endisset
     </div>
 </div>
 
@@ -40,6 +45,11 @@
             <div class="d-flex flex-row py-2">
                 {!! $comment->message_br !!}
             </div>
+            @isset($comment->image_path)
+            <div>
+                <img class="img-thumbnail" src="{{ asset('/storage/post_images/' .$comment->image_path) }}">
+            </div>
+            @endisset
             <div class="d-flex flex-row mb-2 justify-content-end">
                 <div>
                     <vote-component vote="{{ $comment->vote }}" comment-id="{{ $comment->id }}"></vote-component>
@@ -86,6 +96,12 @@
                     <div class="d-flex flex-row py-2">
                         {!! $commentReply->message_br !!}
                     </div>
+                    @isset($commentReply->image_path)
+                    <div>
+                        <img class="img-thumbnail"
+                            src="{{ asset('/storage/post_images/' .$commentReply->image_path) }}">
+                    </div>
+                    @endisset
                     <div class="d-flex flex-row mb-2 justify-content-end">
                         <vote-component vote="{{ $commentReply->vote }}" comment-id="{{ $commentReply->id }}">
                         </vote-component>
