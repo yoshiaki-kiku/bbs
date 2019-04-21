@@ -28,6 +28,7 @@
             <textarea class="form-control" name="message" value="{{ old('message') }}" id=""
                 placeholder="コメントを入力してください。" rows="3"></textarea>
         </div>
+        <select-file-component></select-file-component>
         <div class="text-right">
             @if(Auth::check())
             <button type="submit" class="btn btn-primary">トピックを投稿</button>
@@ -37,3 +38,5 @@
         </div>
     </form>
 </div>
+
+
