@@ -49414,7 +49414,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('vote-component', __webpack_require__(/*! ./components/VoteComponent.vue */ "./resources/js/components/VoteComponent.vue")["default"]);
 Vue.component('select-file-component', __webpack_require__(/*! ./components/SelectFileComponent.vue */ "./resources/js/components/SelectFileComponent.vue")["default"]);
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  mixins: Laravel.vueMixins
 });
 
 /***/ }),

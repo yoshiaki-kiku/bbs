@@ -6,6 +6,8 @@ Vue.component('vote-component', require('./components/VoteComponent.vue').defaul
 Vue.component('select-file-component', require('./components/SelectFileComponent.vue').default);
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    mixins: Laravel.vueMixins
 });
+
 

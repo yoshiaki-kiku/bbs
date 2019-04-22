@@ -39,23 +39,6 @@ class Comment extends Model
     }
 
     /**
-     * 1引数で指定されたIDと現在のIDを比較して
-     * 同じ場合は値を返す
-     *
-     * @param [type] $id
-     * @param [type] $value
-     * @return void
-     */
-    public function idCheck($id, $value)
-    {
-        if ($this->id == $id) {
-            return $value;
-        } else {
-            return null;
-        }
-    }
-
-    /**
      * 親IDでまとめられた、返信コメントの配列、各返信コメント数を返す
      *
      * @param [type] $comments

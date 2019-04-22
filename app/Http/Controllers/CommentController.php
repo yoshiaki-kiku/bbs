@@ -30,6 +30,7 @@ class CommentController extends Controller
         }
 
         // 挿入コメントの位置に移動
+        // コメントIDをセッションに入れて新規コメントの表示の変化に利用
         return redirect()->route("topic.page", $id . "#{$comment_id}")->with([
             "message" => $message,
             "new_comment_id" => $comment_id

@@ -28,15 +28,11 @@
         @include("topic.component.form_comment")
     </div>
 
-    {{-- 新着コメント用のバックカラー --}}
-    @php
-    $newCommentBgColorValue = 'background-color:#F1F8DE'
-    @endphp
 
     @foreach($comments as $comment)
     {{-- 親コメントエリア --}}
     <div class="container border py-2 px-0" id="{{ $comment->id }}"
-        stlye="{!! $comment->idCheck(session('new_comment_id'), $newCommentBgColorValue) !!}">
+        v-bind:class="newCommentCheck({{ $comment->id }}, {{ session('new_comment_id') }})">
         <div class="px-2">
             <div class="d-flex flex-row">
                 <div class="mr-2"><img data-src="holder.js/40x40?theme=sky&size=8"></div>
@@ -87,7 +83,7 @@
             @isset($commentReplies[$comment->id])
             @foreach($commentReplies[$comment->id] as $commentReply)
             <div class="container border-left border-top py-2 px-0" id="{{ $commentReply->id }}"
-                style="{!! $commentReply->idCheck(session('new_comment_id'), $newCommentBgColorValue) !!}">
+                v-bind:class="newCommentCheck({{ $commentReply->id }}, {{ session('new_comment_id') }})">
                 <div class="px-2">
                     <div class="d-flex flex-row">
                         <div class="mr-2"><img data-src="holder.js/40x40?theme=sky&size=8"></div>
@@ -134,4 +130,25 @@
 <div class="container p-4">
     {{ $comments->links() }}
 </div>
+
+
+@endsection
+
+@section('vue_mixin')
+<script>
+    Laravel.vueMixins.push({
+        data: {
+            classObject: {
+                'my-bg-success': true,
+            }
+        },
+        methods: {
+            newCommentCheck(comment_id, session_id) {
+                if (comment_id == session_id) {
+                    return this.classObject;
+                }
+            }
+        },
+    })
+</script>
 @endsection

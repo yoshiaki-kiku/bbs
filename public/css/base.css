@@ -16,6 +16,10 @@ body {
   border: medium solid #ff00ff;
 }
 
+.my-bg-success {
+  background-color: #F1F8DE;
+}
+
 .custom-file-input:lang(ja) ~ .custom-file-label::after {
   content: "\53C2\7167";
 }
