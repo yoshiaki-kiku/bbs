@@ -64,15 +64,13 @@
             @endcan
 
             <div class="d-flex flex-row">
-                <button type="button" class="btn btn-sm btn-secondary mr-auto" aria-expanded="true"
-                    data-toggle="collapse" data-target="#collapse{{ $comment->id }}"
-                    aria-controls="collapse{{ $comment->id }}">
+                <button type="button" class="btn btn-sm mr-auto" aria-expanded="true" data-toggle="collapse"
+                    data-target="#collapse{{ $comment->id }}" aria-controls="collapse{{ $comment->id }}"
+                    v-bind:class="replyButtonColor({{ isset($commentRepliesCount[$comment->id]) }})">
                     ▼ 返信
-                    @if(isset($commentRepliesCount[$comment->id]))
-                    <span class="badge badge-pill ml-1 badge-light">{{ $commentRepliesCount[$comment->id] }}</span>
-                    @else
-                    <span class="badge badge-pill ml-1 badge-light">0</span>
-                    @endif
+                    <span class="ml-1 my-font-bold">
+                        {{ isset($commentRepliesCount[$comment->id]) ? $commentRepliesCount[$comment->id] : 0 }}
+                    </span>
                 </button>
             </div>
         </div>
@@ -137,17 +135,28 @@
 @section('vue_mixin')
 <script>
     Laravel.vueMixins.push({
-        data: {
-            classObject: {
-                'my-bg-success': true,
-            }
-        },
         methods: {
             newCommentCheck(comment_id, session_id) {
                 if (comment_id == session_id) {
-                    return this.classObject;
+                    return {
+                        'my-bg-success': true,
+                    };
                 }
-            }
+            },
+
+            replyButtonColor(flag) {
+                var replyFlag;
+                if (flag) {
+                    replyFlag = true
+                } else {
+                    replyFlag = false
+                }
+
+                return {
+                    'btn-outline-dark': !replyFlag,
+                    'btn-secondary': replyFlag
+                }
+            },
         },
     })
 </script>

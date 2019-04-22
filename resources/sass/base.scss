@@ -18,6 +18,10 @@ body {
     background-color: #F1F8DE;
 }
 
+.my-font-bold {
+    font-weight: bold;
+}
+
 // フォーム
 .custom-file-input:lang(ja) ~ .custom-file-label::after {
     content: "参照";
