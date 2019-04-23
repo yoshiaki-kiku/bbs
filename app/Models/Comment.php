@@ -78,6 +78,8 @@ class Comment extends Model
             $commentReplyFlagJsonArray[$key] = true;
         }
 
+        $commentReplyFlagJsonArray = json_encode($commentReplyFlagJsonArray);
+
         return [$commentReplyArray, $commentReplyCountArray, $commentReplyFlagJsonArray];
     }
 }

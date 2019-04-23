@@ -135,8 +135,9 @@
 @endsection
 
 @section('vue_mixin')
+
 <script>
-    var showData = @json($commentRepliesFlagJson);
+    var showData = JSON.parse('{!! $commentRepliesFlagJson !!}');
 
     Laravel.vueMixins.push({
         data: {
