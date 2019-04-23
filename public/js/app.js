@@ -1773,11 +1773,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    // 親の要素を指定、高さ変更が必要な場合に利用
+    parentElementId: [String, Number]
+  },
   data: function data() {
     return {
       uploadedImage: "",
-      fileName: "ファイル選択..."
+      fileName: ""
     };
   },
   methods: {
@@ -1788,6 +1797,8 @@ __webpack_require__.r(__webpack_exports__);
         this.createImage(file[0]);
       } else {
         this.fileName = "画像ファイルではありません";
+        this.uploadedImage = "";
+        this.watchHeight();
       }
     },
     // アップロードした画像を表示
@@ -1797,12 +1808,23 @@ __webpack_require__.r(__webpack_exports__);
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        console.log(e);
         _this.uploadedImage = e.target.result;
+
+        _this.watchHeight();
       };
 
       reader.readAsDataURL(file);
       this.fileName = file.name;
+    },
+    // 必要な場合は、画像表示でエリアの高さ変わるので
+    // 高さを再調整する
+    watchHeight: function watchHeight() {
+      if (this.parentElementId) {
+        this.$nextTick(function () {
+          var el = document.getElementById(this.parentElementId);
+          el.style.height = el.scrollHeight + 'px';
+        });
+      }
     }
   }
 });
@@ -1840,9 +1862,6 @@ __webpack_require__.r(__webpack_exports__);
       errorFlag: false,
       errorMessage: ""
     };
-  },
-  mounted: function mounted() {
-    console.log("vote mounted.");
   },
   methods: {
     // voteをpostする処理
@@ -37179,24 +37198,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "form-group w-50" }, [
-    _c("div", { staticClass: "custom-file" }, [
-      _c("input", {
-        staticClass: "custom-file-input",
-        attrs: {
-          name: "post_image",
-          type: "file",
-          id: "customFile",
-          lang: "ja"
-        },
-        on: { change: _vm.onFileChange }
-      }),
-      _vm._v(" "),
+  return _c("div", [
+    _c("div", [
       _c(
         "label",
-        { staticClass: "custom-file-label", attrs: { for: "customFile" } },
-        [_vm._v(_vm._s(_vm.fileName))]
-      )
+        {
+          staticClass: "btn my-btn-secondary btn-sm",
+          attrs: { id: "post_image" }
+        },
+        [
+          _vm._v("\n            画像添付(任意)\n            "),
+          _c("input", {
+            staticStyle: { display: "none" },
+            attrs: { id: "post_image", name: "post_image", type: "file" },
+            on: { change: _vm.onFileChange }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v("\n            " + _vm._s(_vm.fileName) + "\n        ")
+      ])
     ]),
     _vm._v(" "),
     _c("img", {
@@ -37209,7 +37231,7 @@ var render = function() {
         }
       ],
       staticClass: "img-thumbnail",
-      staticStyle: { height: "100px" },
+      staticStyle: { height: "100px", display: "block" },
       attrs: { src: _vm.uploadedImage }
     })
   ])

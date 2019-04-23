@@ -22,9 +22,6 @@
                 errorMessage: ""
             }
         },
-        mounted() {
-            console.log("vote mounted.");
-        },
         methods: {
             // voteをpostする処理
             voteAction() {

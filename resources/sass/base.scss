@@ -22,16 +22,15 @@ body {
     font-weight: bold;
 }
 
-// フォーム
-.custom-file-input:lang(ja) ~ .custom-file-label::after {
-    content: "参照";
+.my-btn-secondary {
+    background-color: #E9ECEF;
+    color: #485057;
+    border: 1px solid #a0a8b0;
 }
 
-.custom-file {
+.my-accordion{
+    overflow-wrap: break-word;
     overflow: hidden;
-}
-
-.custom-file-label {
-    white-space: nowrap;
+    transition: 300ms ease-out;
 }
 

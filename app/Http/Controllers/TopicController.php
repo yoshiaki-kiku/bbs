@@ -41,7 +41,7 @@ class TopicController extends Controller
         $commentModel = new Comment();
         $comments = $commentModel->with("user")->where([["topic_id", $topic->id], ["comment_reply", 0]])
             ->orderBy("created_at", "desc")->paginate(config("bbs.paginate.topicPage"));
-        list($commentReplies, $commentRepliesCount) = $commentModel->getRepliesComment($comments);
+        list($commentReplies, $commentRepliesCount, $commentRepliesFlagJson) = $commentModel->getRepliesComment($comments);
 
         // 投稿ボタンの有効無効
         $disabledButton = (Auth::check()) ? "" : " disabled";
@@ -51,6 +51,7 @@ class TopicController extends Controller
             "comments" => $comments,
             "commentReplies" => $commentReplies,
             "commentRepliesCount" => $commentRepliesCount,
+            "commentRepliesFlagJson" => $commentRepliesFlagJson,
             "disabledButton" => $disabledButton,
         ]);
     }
