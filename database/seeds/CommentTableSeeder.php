@@ -34,7 +34,8 @@ class CommentTableSeeder extends Seeder
                 "user_id" => $faker->numberBetween(1, 50),
                 "topic_id" => $topic_id,
                 "comment_reply" => $comment_reply,
-                "message" => $faker->realText($faker->numberBetween(30, 200)),
+                "message" => "「サンプルコメント{$i}」"
+                    . $faker->realText($faker->numberBetween(30, 200)),
                 "vote" => $faker->numberBetween(0, 70),
                 "created_at" => $date,
                 "updated_at" => $date,
