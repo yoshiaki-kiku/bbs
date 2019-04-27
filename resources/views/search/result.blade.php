@@ -6,8 +6,8 @@
     <div class="bg-white p-3 mb-4">
         <form action="{{ route('search.result') }}" class="d-flex flex-row w-100" method="get">
             <div class="flex-grow-1 mr-2">
-                <input name="keywords" type="text" value="{{ old('keywords') }}" class="form-control" placeholder="" aria-label=""
-                    aria-describedby="basic-addon1">
+                <input name="keywords" type="text" value="{{ old('keywords') }}" class="form-control" placeholder=""
+                    aria-label="" aria-describedby="basic-addon1">
             </div>
             <div>
                 <button class="btn btn-success" type="submit">検索</button>
@@ -44,7 +44,7 @@
 </div>
 @endforeach
 <div class="container mt-4">
-    {{ $results->onEachSide(1)->links() }}
+    {{ $results->appends(["keywords" => old('keywords')])->onEachSide(1)->links() }}
 </div>
 @endif
 

@@ -45,8 +45,12 @@ class SearchController extends Controller
             $sqlForWhere = $search->makeMultipleKeywordsSqlForWhere("concat(title, message)", $request->keywords);
             $query = $topic->Where($sqlForWhere);
             $results = $query->orderBy("created_at", "desc")->paginate(config("bbs.paginate.searchResult"));
-            $resultsCount = $query->orderBy("created_at", "desc")->count();
             $numberOfComments = $topic->countComment($results);
+
+            // 検索結果数のカウント用
+            // 同じ$queryを利用するとpaginateの影響を受けるため別にする
+            $queryCount = $topic->Where($sqlForWhere);
+            $resultsCount = $queryCount->orderBy("created_at", "desc")->count();
         }
 
         return view("search.result", [
