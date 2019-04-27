@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use App\Comment;
+use App\Models\Comment;
 
 class CommentTableSeeder extends Seeder
 {

@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Topic;
+use App\Models\Topic;
 
 $factory->define(Topic::class, function (Faker $faker) {
     $date = $faker->dateTimeBetween('-1 years', 'now')->format('Y-m-d H:i:s');

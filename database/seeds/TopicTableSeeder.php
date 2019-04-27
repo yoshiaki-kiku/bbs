@@ -11,6 +11,6 @@ class TopicTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Topic::class, 100)->create();
+        factory(App\Models\Topic::class, 100)->create();
     }
 }

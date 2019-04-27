@@ -36,6 +36,7 @@ class CreateComment extends FormRequest
     {
         return [
             'message' => 'コメント',
+            'post_image' => '添付画像',
         ];
     }
 

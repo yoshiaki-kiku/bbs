@@ -35,6 +35,7 @@ class CreateTopic extends FormRequest
         return [
             'title' => 'タイトル',
             'message' => 'コメント',
+            'post_image' => '添付画像',
         ];
     }
 }
