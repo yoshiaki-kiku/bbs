@@ -15,7 +15,23 @@
     @endif
 
     @if(Auth::guest())
-    <div class="alert alert-info">投稿するにはログインが必要です。</div>
+    <div class="alert alert-info">
+        <p>
+            コメントを投稿するにはユーザーログインが必要です。<br>
+            編集、削除するには管理者ログインが必要です。<br>
+            テスト用に以下のユーザーが利用可能です。
+        </p>
+        <p>
+            管理者<br>
+            ID: admin@mail<br>
+            password: pass<br>
+        </p>
+        <p>
+            一般ユーザー<br>
+            ID:admin@mail<br>
+            password:pass<br>
+        </p>
+    </div>
     @endif
 
     <form action="{{ route('topic.page', $topic->id) }}" method="POST" enctype="multipart/form-data">
