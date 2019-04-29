@@ -1853,7 +1853,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     vote: [String, Number],
-    commentId: [String, Number]
+    commentId: [String, Number],
+    url: [String]
   },
   data: function data() {
     return {
@@ -1877,7 +1878,7 @@ __webpack_require__.r(__webpack_exports__);
         // クリック済みにする
         // 連打防止のため処理前にフラグを切り替える
         this.clickFlag = !this.clickFlag;
-        axios.post("/comments/vote", params).then(function (response) {
+        axios.post(this.url, params).then(function (response) {
           // 更新されたvoteを書き込む
           _this.voteDisplay = response.data;
         })["catch"](function (error) {
@@ -49668,9 +49669,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/project_bbs/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/project_bbs/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/project_bbs/resources/sass/base.scss */"./resources/sass/base.scss");
+__webpack_require__(/*! /var/www/bbs/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/bbs/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /var/www/bbs/resources/sass/base.scss */"./resources/sass/base.scss");
 
 
 /***/ })

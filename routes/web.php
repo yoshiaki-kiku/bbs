@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth', 'can:admin']], function () {
 Route::get('search', "SearchController@show")->name("search.result");
 
 // 投票
-Route::post("comments/vote", "CommentController@vote")->middleware('auth');
+Route::post("comments/vote", "CommentController@vote")->middleware('auth')->name("comment.vote");
 
 Auth::routes();
 

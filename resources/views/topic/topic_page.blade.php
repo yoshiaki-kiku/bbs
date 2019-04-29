@@ -48,7 +48,7 @@
             @endisset
             <div class="d-flex flex-row mb-2 justify-content-end">
                 <div>
-                    <vote-component vote="{{ $comment->vote }}" comment-id="{{ $comment->id }}"></vote-component>
+                    <vote-component url="{{ route('comment.vote') }}" vote="{{ $comment->vote }}" comment-id="{{ $comment->id }}"></vote-component>
                 </div>
             </div>
 

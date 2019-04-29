@@ -13,6 +13,7 @@
         props: {
             vote: [String, Number],
             commentId: [String, Number],
+            url: [String]
         },
         data: function () {
             return {
@@ -36,7 +37,7 @@
                     // 連打防止のため処理前にフラグを切り替える
                     this.clickFlag = !this.clickFlag
 
-                    axios.post("/comments/vote", params)
+                    axios.post(this.url, params)
                         .then((response) => {
                             // 更新されたvoteを書き込む
                             this.voteDisplay = response.data;
