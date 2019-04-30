@@ -48,7 +48,8 @@
             @endisset
             <div class="d-flex flex-row mb-2 justify-content-end">
                 <div>
-                    <vote-component url="{{ route('comment.vote') }}" vote="{{ $comment->vote }}" comment-id="{{ $comment->id }}"></vote-component>
+                    <vote-component url="{{ route('comment.vote') }}" vote="{{ $comment->vote }}"
+                        comment-id="{{ $comment->id }}"></vote-component>
                 </div>
             </div>
 
@@ -100,7 +101,8 @@
                         </div>
                         @endisset
                         <div class="d-flex flex-row mb-2 justify-content-end">
-                            <vote-component vote="{{ $commentReply->vote }}" comment-id="{{ $commentReply->id }}">
+                            <vote-component url="{{ route('comment.vote') }}" vote="{{ $commentReply->vote }}"
+                                comment-id="{{ $commentReply->id }}">
                             </vote-component>
                         </div>
                         @can("admin")
