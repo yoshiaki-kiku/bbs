@@ -74,7 +74,8 @@ class TopicController extends Controller
         if ($request->hasFile("post_image")) {
             $util = new Util();
             $fileName = $util->createImageFileName($request->post_image);
-            $request->post_image->storeAs('public/post_images', $fileName);
+            $image = $util->resizeImage($request->post_image);
+            $image->save(public_path('storage/post_images/' . $fileName));
             $topic->image_path =  $fileName;
         }
 

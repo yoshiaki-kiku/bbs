@@ -2,6 +2,8 @@
 
 namespace App\Libs;
 
+use Image;
+
 class Util
 {
     /**
@@ -23,15 +25,30 @@ class Util
      */
     public function createImageFileName($file)
     {
-        // ファイル名と拡張子
-        $filenameWithExtension = $file->getClientOriginalName();
-        // ファイル名のみ取得
-        $fileName = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
         // 拡張子取得
         $extension = $file->getClientOriginalExtension();
+        // ランダム文字列の生成
+        $random = str_random(14);
         // 保存用のファイル名作成
-        $filenameToStore = $fileName . '_' . time() . '.' . $extension;
+        $filenameToStore =  time() . '_' . $random . '.' . $extension;
 
         return $filenameToStore;
+    }
+
+    /**
+     * 最大高さを設定して、最大以上ならリサイズ
+     *
+     * @param [type] $img
+     * @return void
+     */
+    public function resizeImage($requestImage)
+    {
+        $img = Image::make($requestImage);
+        $height = 440;
+        $img->resize(null, $height, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+        return $img;
     }
 }

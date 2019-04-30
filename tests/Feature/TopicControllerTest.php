@@ -64,10 +64,10 @@ class TopicControllerTest extends TestCase
     {
         $user = \App\User::find(2);
         $response = $this->actingAs($user)->post('/', [
-            'post_image' => UploadedFile::fake()->image("test.jpg", 300, 300)->size(3000),
+            'post_image' => UploadedFile::fake()->image("test.jpg", 300, 300)->size(3001),
         ]);
 
-        $response->assertSessionHasErrors(['post_image' => '添付画像には2048 KB以下のファイルを指定してください。']);
+        $response->assertSessionHasErrors(['post_image' => '添付画像には3000 KB以下のファイルを指定してください。']);
     }
 
     /**
