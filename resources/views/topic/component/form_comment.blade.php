@@ -28,7 +28,7 @@
         </p>
         <p>
             一般ユーザー<br>
-            ID:admin@mail<br>
+            ID:user@mail<br>
             password:pass<br>
         </p>
     </div>
