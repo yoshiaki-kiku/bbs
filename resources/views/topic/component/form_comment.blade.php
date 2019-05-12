@@ -17,19 +17,26 @@
     @if(Auth::guest())
     <div class="alert alert-info">
         <p>
-            コメントを投稿するにはユーザーログインが必要です。<br>
+            トピックを投稿するにはユーザーログインが必要です。<br>
             編集、削除するには管理者ログインが必要です。<br>
-            テスト用に以下のユーザーが利用可能です。
         </p>
+        <p><strong>テスト確認用に以下のボタンでID、パスなしでログインできます。</strong></p>
         <p>
-            管理者<br>
-            ID: admin@mail<br>
-            password: pass<br>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <input type="hidden" name="email" value="user@mail">
+                <input type="hidden" name="password" value="pass">
+                <button type="submit" class="btn btn-primary">一般ユーザーでログイン</button>
+            </form>
         </p>
+
         <p>
-            一般ユーザー<br>
-            ID:user@mail<br>
-            password:pass<br>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <input type="hidden" name="email" value="admin@mail">
+                <input type="hidden" name="password" value="pass">
+                <button type="submit" class="btn btn-primary">管理者でログイン</button>
+            </form>
         </p>
     </div>
     @endif
